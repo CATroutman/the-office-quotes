@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, SafeAreaView } from 'react-native';
 import Home from './pages/Home';
+import { checkDatabase } from './SQLite/Quotes';
 
 const backgroundImage = require("./assets/black.png")
 
 export default function App() {
+  checkDatabase();
+
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.image}>
