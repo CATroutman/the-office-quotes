@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   base: {
-    backgroundColor: '#38BDF8',
+    backgroundColor: 'white',
   },
   pressed: {
-    backgroundColor: '#0369A1',
+    backgroundColor: 'gray',
   },
   pressable: {
     borderRadius: 10,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   text: {
-    color: '#0F172A',
+    color: 'black',
     fontSize: 26,
     fontWeight: '500',
   }

@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <View style={styles.toolbar}>
-        <StyledButton title="Search" onPress={() => console.log('search pressed')} />
+        {/* <StyledButton title="Search" onPress={() => console.log('search pressed')} /> */}
         <View style={{flex:1}} /> 
-        <StyledButton title="Settings" onPress={() => console.log('settigns pressed')} />
+        {/* <StyledButton title="Settings" onPress={() => console.log('settigns pressed')} /> */}
       </View>
       <View style={{flex:1, marginVertical: 15}}>
         <QuoteView quote={quote} />
