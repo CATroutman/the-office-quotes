@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   scrollView: {
+    width: '100%',
   },
   episodeView: {
     display: 'flex',
