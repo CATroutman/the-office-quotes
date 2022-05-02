@@ -1,38 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground, SafeAreaView } from 'react-native';
+import 'react-native-gesture-handler';
+import { useState } from 'react';
 import Home from './pages/Home';
 import { checkDatabase } from './SQLite/Quotes';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const backgroundImage = require("./assets/black.png")
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   checkDatabase();
+  const [title, setTitle] = useState('');
 
   return (
-    <View style={styles.container}>
-      <ImageBackground source={backgroundImage} style={styles.image}>
-        <SafeAreaView style={styles.safeArea}>
-          <Home />
-        </SafeAreaView>
-      </ImageBackground>
-      <StatusBar style='light' backgroundColor="rgba(0, 0, 0, 0.5)" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator screenOptions={{headerStyle: { backgroundColor: 'black' }, headerTintColor: '#fff', headerTitleStyle: {fontWeight: 'bold'}}}>
+        <Drawer.Screen name="Home" options={{title: title}} children={() => <Home setTitle={setTitle} />} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: 'flex',
-  },
-  image: {
-    display: 'flex',
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  safeArea: {
-    display: 'flex',
-    flex: 1,
-  }
-});

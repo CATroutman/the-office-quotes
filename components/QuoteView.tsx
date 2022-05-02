@@ -21,10 +21,10 @@ export default function QuoteView(props: QuoteViewProps) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.episodeView}>
-        <Text style={styles.text}><Text style={{fontWeight: '800', textDecorationLine: 'underline', fontStyle: 'normal'}}>{`${props.quote.seasonEp}`}</Text>: {props.quote.episodeName}</Text>
-      </View>
-      <ScrollView style={styles.scrollView} ref={scrollRef} >
+      <ScrollView style={styles.scrollView} contentContainerStyle={{alignItems: 'center'}} ref={scrollRef} >
+        <View style={styles.episodeView}>
+          <Text style={styles.text}><Text style={{fontWeight: '800', textDecorationLine: 'underline', fontStyle: 'normal'}}>{`${props.quote.seasonEp}`}</Text>: {props.quote.episodeName}</Text>
+        </View>
         {quoteLines.map((line, index) => <QuoteLine line={line} key={index} />)}
       </ScrollView>
     </View>
@@ -33,29 +33,37 @@ export default function QuoteView(props: QuoteViewProps) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     height: '100%',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 15,
   },
   scrollView: {
+    paddingTop: 15,
     width: '100%',
+    borderBottomWidth: 0.2,
+    borderBottomColor: 'white',
   },
   episodeView: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    maxWidth: '85%',
-    borderRadius: 15,
+    backgroundColor: 'black',
     paddingVertical: 10,
-    paddingHorizontal: 10,
-    marginBottom: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    borderColor: 'white',
+    borderWidth: 2,
+    justifyContent: 'center',
+    maxWidth: '85%',
+    marginBottom: 30,
   },
   text: {
     fontSize: 22,
     height: '100%',
     textAlign: 'center',
     fontWeight: '600',
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    color: 'white',
   },
 });

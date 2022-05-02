@@ -1,31 +1,38 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import StyledButton from '../components/StyledButton';
 import { getRandomQuote } from '../SQLite/Quotes';
 import { EpisodeQuote, emptyEpisodeQuote } from '../types/EpisodeQuote';
 import QuoteView from '../components/QuoteView';
 
+const backgroundImage = require("../assets/black.png");
 
-export default function Home() {
+interface HomeProps {
+  setTitle: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function Home(props: HomeProps) {
   const [quote, setQuote] = useState<EpisodeQuote>(emptyEpisodeQuote())
 
   useEffect(() => {
     getRandomQuote(setQuote);
   }, [])
 
+  useEffect(() => {
+    props.setTitle(`${quote.seasonEp}: ${quote.episodeName}`)
+  }, [quote])
+        //<SafeAreaView style={styles.safeArea}></SafeAreaView>
+
   return (
     <View style={styles.container}>
-      <View style={styles.toolbar}>
-        {/* <StyledButton title="Search" onPress={() => console.log('search pressed')} /> */}
-        <View style={{flex:1}} /> 
-        {/* <StyledButton title="Settings" onPress={() => console.log('settigns pressed')} /> */}
-      </View>
-      <View style={{flex:1, marginVertical: 15}}>
-        <QuoteView quote={quote} />
-      </View>
-      <View>
-        <StyledButton title="Beer me a new quote!" onPress={() => {getRandomQuote(setQuote)}} />
-      </View>
+      <ImageBackground source={backgroundImage} style={styles.image}>
+        <SafeAreaView style={styles.safeArea}>
+          <QuoteView quote={quote} />
+          <View>
+            <StyledButton title="Beer me a new quote!" onPress={() => {getRandomQuote(setQuote)}} />
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
     </View>
   );
 };
@@ -41,5 +48,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: 20,
     paddingTop: 10,
+  },
+  image: {
+    display: 'flex',
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  safeArea: {
+    display: 'flex',
+    flex: 1,
   }
 });
