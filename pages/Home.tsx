@@ -7,10 +7,6 @@ import QuoteView from '../components/QuoteView';
 
 const backgroundImage = require("../assets/black.png");
 
-interface HomeProps {
-  setTitle: React.Dispatch<React.SetStateAction<string>>
-}
-
 export default function Home() {
   const [quote, setQuote] = useState<EpisodeQuote>(emptyEpisodeQuote())
 
