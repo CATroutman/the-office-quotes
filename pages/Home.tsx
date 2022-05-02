@@ -11,17 +11,12 @@ interface HomeProps {
   setTitle: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function Home(props: HomeProps) {
+export default function Home() {
   const [quote, setQuote] = useState<EpisodeQuote>(emptyEpisodeQuote())
 
   useEffect(() => {
     getRandomQuote(setQuote);
   }, [])
-
-  useEffect(() => {
-    props.setTitle(`${quote.seasonEp}: ${quote.episodeName}`)
-  }, [quote])
-        //<SafeAreaView style={styles.safeArea}></SafeAreaView>
 
   return (
     <View style={styles.container}>

@@ -10,12 +10,11 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   checkDatabase();
-  const [title, setTitle] = useState('');
 
   return (
     <NavigationContainer>
       <Drawer.Navigator screenOptions={{headerStyle: { backgroundColor: 'black' }, headerTintColor: '#fff', headerTitleStyle: {fontWeight: 'bold'}}}>
-        <Drawer.Screen name="Home" options={{title: title}} children={() => <Home setTitle={setTitle} />} />
+        <Drawer.Screen name="Home" options={{title: 'Home'}} children={() => <Home />} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
